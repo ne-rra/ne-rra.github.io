@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Private wiki</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0d1117;color:#e6edf3;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.card{background:#161b22;border:1px solid #30363d;border-radius:14px;padding:2.2rem 2.4rem;width:min(92vw,380px);text-align:center}
+.lock{font-size:2.2rem}
+h1{font-size:1.25rem;margin:.6rem 0 .3rem}
+p.sub{color:#8b949e;font-size:.9rem;margin:0 0 1.2rem}
+form{display:flex;gap:.5rem}
+input{flex:1;min-width:0;background:#0d1117;border:1px solid #30363d;color:#e6edf3;border-radius:8px;padding:.65rem .8rem;font-size:1rem}
+button{background:#238636;border:0;color:#fff;border-radius:8px;padding:.65rem 1rem;font-size:1rem;cursor:pointer}
+button:hover{background:#2ea043}
+#err{color:#f85149;font-size:.85rem;margin-top:.9rem}
+</style>
+</head>
+<body>
+<div class="card">
+<div class="lock">🔒</div>
+<h1>Desk wiki</h1>
+<p class="sub">Unofficial &mdash; enter the wiki password to continue.</p>
+<form id="f"><input id="pw" type="password" placeholder="Password" autocomplete="current-password" autofocus><button type="submit">Unlock</button></form>
+<p id="err" hidden>Wrong password &mdash; try again.</p>
+</div>
+<script id="payload" type="application/json">{"salt":"CphdxI/L9DoV7XE+IKEMqA==","iv":"LLEgcUm5Dd34NphY","data":"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"}</script>
+<script>
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+async function unlock(pw){
+  const p = JSON.parse(document.getElementById('payload').textContent);
+  const km = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey']);
+  const key = await crypto.subtle.deriveKey({name:'PBKDF2', salt:b64(p.salt), iterations:200000, hash:'SHA-256'}, km, {name:'AES-GCM', length:256}, false, ['decrypt']);
+  const pt = await crypto.subtle.decrypt({name:'AES-GCM', iv:b64(p.iv)}, key, b64(p.data));
+  return new TextDecoder().decode(pt);
+}
+async function show(html){ document.open(); document.write(html); document.close(); }
+async function tryPw(pw, silent){
+  try { const html = await unlock(pw); sessionStorage.setItem('deskwiki', pw); await show(html); return true; }
+  catch(e){ if(!silent) document.getElementById('err').hidden = false; return false; }
+}
+document.getElementById('f').addEventListener('submit', e => { e.preventDefault(); document.getElementById('err').hidden = true; tryPw(document.getElementById('pw').value, false); });
+(async () => { const saved = sessionStorage.getItem('deskwiki'); if (saved) { const ok = await tryPw(saved, true); if (!ok) sessionStorage.removeItem('deskwiki'); } })();
+</script>
+</body>
+</html>

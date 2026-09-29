@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Private wiki</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0d1117;color:#e6edf3;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.card{background:#161b22;border:1px solid #30363d;border-radius:14px;padding:2.2rem 2.4rem;width:min(92vw,380px);text-align:center}
+.lock{font-size:2.2rem}
+h1{font-size:1.25rem;margin:.6rem 0 .3rem}
+p.sub{color:#8b949e;font-size:.9rem;margin:0 0 1.2rem}
+form{display:flex;gap:.5rem}
+input{flex:1;min-width:0;background:#0d1117;border:1px solid #30363d;color:#e6edf3;border-radius:8px;padding:.65rem .8rem;font-size:1rem}
+button{background:#238636;border:0;color:#fff;border-radius:8px;padding:.65rem 1rem;font-size:1rem;cursor:pointer}
+button:hover{background:#2ea043}
+#err{color:#f85149;font-size:.85rem;margin-top:.9rem}
+</style>
+</head>
+<body>
+<div class="card">
+<div class="lock">🔒</div>
+<h1>Desk wiki</h1>
+<p class="sub">Unofficial &mdash; enter the wiki password to continue.</p>
+<form id="f"><input id="pw" type="password" placeholder="Password" autocomplete="current-password" autofocus><button type="submit">Unlock</button></form>
+<p id="err" hidden>Wrong password &mdash; try again.</p>
+</div>
+<script id="payload" type="application/json">{"salt":"VCoyKWKBsf+Dy6uRsgFp7Q==","iv":"HzCAcYh5yKV93zSy","data":"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"}</script>
+<script>
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+async function unlock(pw){
+  const p = JSON.parse(document.getElementById('payload').textContent);
+  const km = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey']);
+  const key = await crypto.subtle.deriveKey({name:'PBKDF2', salt:b64(p.salt), iterations:200000, hash:'SHA-256'}, km, {name:'AES-GCM', length:256}, false, ['decrypt']);
+  const pt = await crypto.subtle.decrypt({name:'AES-GCM', iv:b64(p.iv)}, key, b64(p.data));
+  return new TextDecoder().decode(pt);
+}
+async function show(html){ document.open(); document.write(html); document.close(); }
+async function tryPw(pw, silent){
+  try { const html = await unlock(pw); sessionStorage.setItem('deskwiki', pw); await show(html); return true; }
+  catch(e){ if(!silent) document.getElementById('err').hidden = false; return false; }
+}
+document.getElementById('f').addEventListener('submit', e => { e.preventDefault(); document.getElementById('err').hidden = true; tryPw(document.getElementById('pw').value, false); });
+(async () => { const saved = sessionStorage.getItem('deskwiki'); if (saved) { const ok = await tryPw(saved, true); if (!ok) sessionStorage.removeItem('deskwiki'); } })();
+</script>
+</body>
+</html>
